@@ -12,8 +12,12 @@
 <meta property="og:url" content="https://francis-fy.github.io/categories/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://francis-fy.github.io/images/og_image.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:image" content="https://francis-fy.github.io/images/og_image.png">
+
+
 
 
 
@@ -150,7 +154,9 @@
         <nav class="level">
             <div class="level-item has-text-centered">
                 <div>
-                    <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Francis">
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Francis">
+                    
                     
                     <p class="is-size-4 is-block">
                         Francis
@@ -203,7 +209,7 @@
             </div>
         </nav>
         <div class="level">
-            <a class="level-item button is-link is-rounded" href="http://github.com/Francis-FY">
+            <a class="level-item button is-link is-rounded" href="http://github.com/Francis-FY" target="_blank">
                 关注我</a>
         </div>
         
@@ -269,7 +275,7 @@
         
         <article class="media">
             
-            <a href="/2019/01/08/hello-world/" class="media-left">
+            <a href="/2019/03/29/hello-world/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
                 </p>
@@ -277,8 +283,8 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-08T03:07:32.114Z">2019-01-08</time></div>
-                    <a href="/2019/01/08/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-29T10:10:59.161Z">2019-03-29</time></div>
+                    <a href="/2019/03/29/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -299,9 +305,9 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
+            <a class="level is-marginless" href="/archives/2019/03/">
                 <span class="level-start">
-                    <span class="level-item">一月 2019</span>
+                    <span class="level-item">三月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -320,9 +326,9 @@
             <h3 class="menu-label">
                 标签
             </h3>
-            <ul class="menu-list">
+            <div class="field is-grouped is-grouped-multiline">
                 
-            </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -347,7 +353,7 @@
         
         <article class="media">
             
-            <a href="/2019/01/08/hello-world/" class="media-left">
+            <a href="/2019/03/29/hello-world/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
                 </p>
@@ -355,8 +361,8 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-08T03:07:32.114Z">2019-01-08</time></div>
-                    <a href="/2019/01/08/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-29T10:10:59.161Z">2019-03-29</time></div>
+                    <a href="/2019/03/29/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -377,9 +383,9 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
+            <a class="level is-marginless" href="/archives/2019/03/">
                 <span class="level-start">
-                    <span class="level-item">一月 2019</span>
+                    <span class="level-item">三月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -398,9 +404,9 @@
             <h3 class="menu-label">
                 标签
             </h3>
-            <ul class="menu-list">
+            <div class="field is-grouped is-grouped-multiline">
                 
-            </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -422,7 +428,8 @@
                 </a> -->
                 <p class="is-size-7">
                 &copy; 2019 John Doe&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
                 </p>
             </div>
             <div class="level-end">
@@ -506,9 +513,21 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     MathJax.Hub.Config({
-        'HTML-CSS': {matchFontHeight: false},
-        SVG: {matchFontHeight: false},
-        CommonHTML: {matchFontHeight: false}
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
     });
 });
 </script>
