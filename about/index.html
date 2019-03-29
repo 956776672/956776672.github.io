@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Canvas</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="page-canvas"></canvas>
+</body>
+
+<script>
+  let canvas = document.getElementById('page-canvas');
+  let canvasWidth = document.body.clientWidth;
+  let canvasHeight = document.body.clientHeight;
+  canvas.setAttribute('width', canvasWidth);
+  canvas.setAttribute('height', canvasHeight);
+  let context = canvas.getContext('2d');
+  let imageArr = ["./img/hello.png","./img/taylor.jpg", "./img/gyy1.jpg"]
+  let task;
+
+  let count = 0;
+  drawImage(imageArr[count++]);
+  clearInterval(task);
+  task = setInterval(()=>{
+    drawImage(imageArr[count++ % 2]);
+  }, 5000);
+
+  function drawImage(imgUrl){
+    context.clearRect(0,0, canvasWidth, canvasHeight);
+    let img = new Image();
+    img.src = imgUrl;
+    img.crossOrigin = '*';
+
+    img.onload = function () {
+      let width = this.width;
+      let height = this.height;
+
+      if (width * height > 300 * 300) {
+        let oldMax = Math.max(width, height);
+        if (height > width) {
+          height = 300;
+          width = round(width * height / oldMax);
+        } else {
+          width = 300;
+          height = round(height * width / oldMax);
+        }
+      } else if (width * height < 100 * 100) {
+        let oldMin = Math.min(width, height)
+        if (height < width) {
+          height = 100;
+          width = round(width * height / oldMin);
+        } else {
+          width = 100;
+          height = round(height * width / oldMin);
+        }
+      }
+
+      context.drawImage(img, 0, 0, width, height);
+      let imgData = context.getImageData(0, 0, width, height).data;
+      context.clearRect(0, 0, width, height);
+      let w = 150;
+      let h = round(w / width * height);
+      let pixelRadius = 2;
+      let sample = sampling(imgData, width, height, w, h, pixelRadius);
+
+      let startX = (canvasWidth - (w * pixelRadius * 2)) / 2;
+      let startY = (canvasHeight - (h * pixelRadius * 2)) / 2;
+      sample.forEach(item => {
+        drawCircle(startX + item.x, startY + item.y, pixelRadius, `rgba(${item.r},${item.g},${item.b},${item.a})`);
+      });
+    }
+  }
+
+  function drawCircle(x, y, radius, color) {
+    context.save();
+    context.fillStyle = color;
+    context.beginPath();
+    context.arc(x, y, radius, 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+    context.restore();
+  }
+
+  function drawCube(x, y, length, color) {
+    context.save();
+    context.fillStyle = color;
+    context.beginPath();
+    context.fillRect(x, y, length, length)
+    context.closePath();
+    context.restore();
+  }
+
+  function sampling(data, width, height, sampleWidth, sampleHeight, scale){
+    var result = [];
+    let widthScale = width / sampleWidth;
+    let heightScale = height / sampleHeight;
+    let sampleX = 0, smapleY = 0;
+    for (let j = 0; j <= height; j += heightScale) {
+      sampleX = 0;
+      for(let i = 0; i <= width; i+= widthScale){
+          let index = (round(j) * width + round(i)) * 4;
+          if (index > data.length - 4) {
+            index = (round(j - 1) * width + round(i)) * 4;
+            if(index > data.length - 4){
+              index = data.length - 4;
+            }
+          }
+          result.push({
+            x:sampleX,
+            y:smapleY,
+            r:data[index],
+            g:data[index + 1],
+            b:data[index + 2],
+            a:data[index + 3]
+          });
+          sampleX+= 2 * scale;
+      }
+      smapleY+= 2 * scale;
+    }
+    return result;
+  }
+
+  function round(num) {
+      let rounded = (0.5 + num) | 0;
+      rounded = ~~(0.5 + num);
+      rounded = (0.5 + num) << 0;
+      return rounded;
+    }
+</script>
+
+</html>
