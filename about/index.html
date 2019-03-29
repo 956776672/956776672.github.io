@@ -38,7 +38,7 @@
   drawImage(imageArr[count++]);
   clearInterval(task);
   task = setInterval(()=>{
-    drawImage(imageArr[count++ % 2]);
+    drawImage(imageArr[count++ % 3]);
   }, 5000);
 
   function drawImage(imgUrl){
